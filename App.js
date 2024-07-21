@@ -4,21 +4,45 @@ import StartScreen from "./screens/StartScreen";
 import {LinearGradient} from "expo-linear-gradient";
 import {useState} from "react";
 import GameScreen from "./screens/GameScreen";
+import {Colors} from "./constants/colors";
+import GameOverScreen from "./screens/GameOverScreen";
+import {useFonts} from "expo-font";
+import AppLoading from "expo-app-loading/build/AppLoadingNativeWrapper";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [gameIsOver, setGameIsOver] = useState(true);
+  let screen = <StartScreen onStartGame={startGameHandler}/>;
+
+  const [fontsLoaded] = useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   function startGameHandler(selectedNumber) {
     setUserNumber(selectedNumber);
+    setGameIsOver(false);
   }
 
-  let screen = <StartScreen onStartGame={startGameHandler}/>;
-  if (userNumber) {
-    screen = <GameScreen userChoice={userNumber}/>;
+  function gameOverHandler() {
+    setGameIsOver(true);
   }
+
+  if (userNumber) {
+    screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler}/>;
+  }
+
+  if (gameIsOver && userNumber) {
+    screen = <GameOverScreen onStartGame={startGameHandler}/>;
+  }
+  console.log(userNumber);
 
   return (
-    <LinearGradient style={styles.rootScreen} colors={['#4e0329', '#ddb52f']}>
+    <LinearGradient style={styles.rootScreen} colors={[Colors.primary700, Colors.accent500]}>
       <StatusBar style="light"/>
       <ImageBackground
         source={require('./assets/images/background.png')}
