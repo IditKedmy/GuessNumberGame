@@ -17,8 +17,6 @@ export default function GameOverScreen({roundsNumber, userNumber, onRestart}) {
         <Text style={styles.highlight}> {userNumber}</Text>
         .
       </Text>
-      {/*<NumberContainer>Number was: {userNumber}</NumberContainer>*/}
-      {/*<NumberContainer>Number of rounds: {roundsNumber}</NumberContainer>*/}
       <PrimaryButton onPress={onRestart}>Restart Game</PrimaryButton>
     </View>
   );
