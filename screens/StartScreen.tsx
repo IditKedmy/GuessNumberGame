@@ -1,4 +1,4 @@
-import {View, StyleSheet, TextInput, Alert} from "react-native";
+import {View, StyleSheet, TextInput, Alert, useWindowDimensions} from "react-native";
 import {useState} from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import {Colors} from "../constants/colors";
@@ -8,6 +8,7 @@ import InstructionText from "../components/ui/InstuctionText";
 
 export default function StartScreen({onStartGame}) {
   const [enteredNumber, setEnteredNumber] = useState('');
+  const {height} = useWindowDimensions();
 
   function numberInputHandler(inputText: string) {
     setEnteredNumber(inputText);
@@ -30,8 +31,10 @@ export default function StartScreen({onStartGame}) {
     onStartGame(chosenNumber);
   }
 
+  const marginTop = height > 380 ? 100 : 30;
+
   return (
-    <View style={styles.rootContainer}>
+    <View style={[styles.rootContainer, {marginTop: marginTop}]}>
       <Title>Start a New Game!</Title>
       <Card>
         <InstructionText>Enter a number</InstructionText>
@@ -60,7 +63,6 @@ export default function StartScreen({onStartGame}) {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    marginTop: 100,
     alignItems: 'center',
   },
   numberInput: {

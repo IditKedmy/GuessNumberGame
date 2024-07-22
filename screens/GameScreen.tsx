@@ -1,4 +1,4 @@
-import {View, StyleSheet, Alert, FlatList} from "react-native";
+import {View, StyleSheet, Alert, FlatList, useWindowDimensions} from "react-native";
 import Title from "../components/ui/Title";
 import {useEffect, useState} from "react";
 import NumberContainer from "../components/game/NumberContainer";
@@ -25,6 +25,8 @@ export default function GameScreen({userNumber, onGameOver}) {
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [guessRounds, setGuessRounds] = useState([initialGuess]);
+  const {width} = useWindowDimensions();
+  const isWide = width > 380;
 
   useEffect(() => {
     minBoundary = 1;
@@ -59,7 +61,7 @@ export default function GameScreen({userNumber, onGameOver}) {
   }
 
   return (
-    <View style={styles.screen}>
+    <View style={[styles.screen, {marginTop: isWide ? 24 : 12}]}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>

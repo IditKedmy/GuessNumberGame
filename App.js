@@ -46,7 +46,6 @@ export default function App() {
   if (gameIsOver && userNumber) {
     screen = <GameOverScreen onRestart={startNewGameHandler} userNumber={userNumber} roundsNumber={guessRounds}/>;
   }
-  console.log(userNumber);
 
   return (
     <LinearGradient style={styles.rootScreen} colors={[Colors.primary700, Colors.accent500]}>

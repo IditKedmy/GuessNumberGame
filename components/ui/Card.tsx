@@ -1,9 +1,12 @@
-import {View, StyleSheet} from "react-native";
+import {View, StyleSheet, useWindowDimensions} from "react-native";
 import {Colors} from "../../constants/colors";
 
 export default function Card({children}) {
+  const {width} = useWindowDimensions();
+  const isWide = width > 380;
+
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, {marginTop: isWide ? 36 : 18}]}>
       {children}
     </View>
   );
@@ -12,7 +15,6 @@ export default function Card({children}) {
 const styles = StyleSheet.create({
   card: {
     padding: 16,
-    marginTop: 36,
     marginHorizontal: 24,
     borderRadius: 8,
     backgroundColor: Colors.primary800,
