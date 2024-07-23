@@ -7,8 +7,8 @@ export default function NumberContainer({children}) {
 
   return (
     <View style={[styles.container, {
-      padding: isWide ? 24 : 12,
-      margin: isWide ? 24 : 12,
+      padding: width > 500 ? 10 : isWide ? 24 : 12,
+      margin: width > 500 ? 12 : isWide ? 24 : 12,
     }
     ]}>
       <Text style={[styles.numberText, {fontSize: isWide ? 36 : 28}]}>{children}</Text>
