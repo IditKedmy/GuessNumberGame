@@ -8,6 +8,11 @@ import InstructionText from "../components/ui/InstuctionText";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import GuessLogItem from "../components/game/GuessLogItem";
 
+type Props = {
+  userNumber: number,
+  onGameOver: (rounds: number) => void,
+}
+
 function generateRandomBetween(min: number, max: number, exclude: number) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
@@ -21,7 +26,7 @@ function generateRandomBetween(min: number, max: number, exclude: number) {
 let minBoundary = 1;
 let maxBoundary = 100;
 
-export default function GameScreen({userNumber, onGameOver}) {
+export default function GameScreen(this: any, {userNumber, onGameOver}: Props) {
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [guessRounds, setGuessRounds] = useState([initialGuess]);

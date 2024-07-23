@@ -6,7 +6,11 @@ import Title from "../components/ui/Title";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstuctionText";
 
-export default function StartScreen({onStartGame}) {
+type Props = {
+  onStartGame: (userNumber: number) => void,
+}
+
+export default function StartScreen({onStartGame}: Props) {
   const [enteredNumber, setEnteredNumber] = useState('');
   const {height} = useWindowDimensions();
 

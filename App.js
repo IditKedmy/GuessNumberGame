@@ -47,9 +47,9 @@ export default function App() {
     screen = <GameOverScreen onRestart={startNewGameHandler} userNumber={userNumber} roundsNumber={guessRounds}/>;
   }
 
-  return (
+  return (<>
+    <StatusBar style="light"/>
     <LinearGradient style={styles.rootScreen} colors={[Colors.primary700, Colors.accent500]}>
-      <StatusBar style="light"/>
       <ImageBackground
         source={require('./assets/images/background.png')}
         resizeMode="cover"
@@ -61,7 +61,7 @@ export default function App() {
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
-  );
+  </>);
 }
 
 const styles = StyleSheet.create({

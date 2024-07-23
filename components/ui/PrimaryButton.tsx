@@ -1,7 +1,13 @@
 import {Pressable, Text, View, StyleSheet} from "react-native";
 import {Colors} from "../../constants/colors";
+import {JSX} from "react";
 
-export default function PrimaryButton({children, onPress}) {
+type Props = {
+  children: string | JSX.Element;
+  onPress: () => void;
+}
+
+export default function PrimaryButton({children, onPress}: Props) {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable

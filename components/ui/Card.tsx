@@ -1,7 +1,12 @@
 import {View, StyleSheet, useWindowDimensions} from "react-native";
 import {Colors} from "../../constants/colors";
+import {JSX} from "react";
 
-export default function Card({children}) {
+type Props = {
+  children: JSX.Element | JSX.Element[],
+}
+
+export default function Card({children}: Props) {
   const {width} = useWindowDimensions();
   const isWide = width > 380;
 

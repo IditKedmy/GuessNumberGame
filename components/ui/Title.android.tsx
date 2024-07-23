@@ -1,6 +1,11 @@
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet} from 'react-native';
+import {JSX} from "react";
 
-export default function Title({children}) {
+type Props = {
+  children: string | JSX.Element;
+}
+
+export default function Title({children}: Props) {
   return (
     <Text style={styles.title}>{children}</Text>
   );
@@ -12,6 +17,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: 'white',
     textAlign: "center",
+    // borderWidth: Platform.OS === 'android' ? 2 : 0,
+    // borderWidth: Platform.select({android: 2, ios: 0}),
     borderWidth: 2,
     borderColor: 'white',
     borderRadius: 8,
